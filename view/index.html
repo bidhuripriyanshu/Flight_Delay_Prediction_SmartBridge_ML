@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flight Delay Prediction Prediction</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Flight Delay Prediction</h1>
+    <form action="{{ url_for('predict') }}" method="POST">
+        <label for="month">Month:</label>
+        <input type="number" step="1" name="month" min="1" max="12" required><br><br>
+        <label for="day">Day of the Month:</label>
+        <input type="number" name="day" min="1" max="31" required><br><br>
+        <label for="quarter">Quarter:</label>
+        <select name="quarter" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select><br><br>
+        
+<label for="origin">Origin Airport:</label>
+<select name="origin" required>
+    <option value="ATL">ATL</option>
+    <option value="DTW">DTW</option>
+    <option value="SEA">SEA</option>
+    <option value="MSP">MSP</option>
+    <option value="JFK">JFK</option>
+</select><br><br>
+<label for="departure">Departure Airport:</label>
+<select name="departure" required>
+    <option value="ATL">ATL</option>
+    <option value="DTW">DTW</option>
+    <option value="SEA">SEA</option>
+    <option value="MSP">MSP</option>
+    <option value="JFK">JFK</option>
+</select><br><br>
+        <input type="submit" value="Predict">
+    </form>
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        darkModeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+    </script>
+</body>
+</html>

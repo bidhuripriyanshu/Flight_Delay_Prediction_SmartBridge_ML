@@ -1,0 +1,23 @@
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+import joblib
+
+df = pd.read_csv('flightdata.csv')
+df = df.drop('Unnamed: 25', axis=1)
+df = df[['FL_NUM','MONTH','DAY_OF_MONTH','DAY_OF_WEEK','ORIGIN','DEST','CRS_ARR_TIME','DEP_DEL15','ARR_DEL15']]
+df = df.fillna({'ARR_DEL15':1, 'DEP_DEL15':0})
+import math
+df['CRS_ARR_TIME'] = df['CRS_ARR_TIME'].apply(lambda x: math.floor(x / 100))
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+df['DEST'] = le.fit_transform(df['DEST'])
+df['ORIGIN'] = le.fit_transform(df['ORIGIN'])
+df = pd.get_dummies(df, columns=['ORIGIN','DEST'])
+x = df.iloc[:,0:8].values
+y = df.iloc[:,8:9].values
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
+dt = DecisionTreeClassifier()
+dt.fit(x_train, y_train)
+joblib.dump(dt, 'decisionTree.pkl')

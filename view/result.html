@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flight Delay Prediction - Result</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='result.css') }}">
+</head>
+<body>
+
+    <div class="result-container">
+        <div class="result-box">
+            <h3>Prediction:</h3>
+            <style>
+                .delayed-message {
+                  background-color: gray;
+                  padding: 10px;
+                  color: black;
+                }
+              </style>
+            </head>
+            <body>
+              <div class="result-container">
+                <div class="result-box">
+                    <p class="result-value">{{ prediction }}</p>
+                </div>
+            </div>
+</body>
+</html>
